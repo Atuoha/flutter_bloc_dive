@@ -54,12 +54,15 @@ class _HomeScreenState extends State<HomeScreen> {
             case ConnectionState.waiting:
               return button;
             case ConnectionState.active:
-              return Column(
-                children: [
-                  Text(snapshot.data! ?? ''),
-                  const SizedBox(height: 10),
-                  button,
-                ],
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(snapshot.data! ?? ''),
+                    const SizedBox(height: 10),
+                    button,
+                  ],
+                ),
               );
             case ConnectionState.done:
               return const SizedBox();
