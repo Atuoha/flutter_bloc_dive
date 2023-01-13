@@ -21,54 +21,52 @@ class _CounterScreenState extends State<CounterScreen> {
       appBar: AppBar(
         title: const Text('Counter App'),
       ),
-      body: BlocListener<CounterCubit, CounterState>(
-        listener: (context, state) {
-          if (state.wasIncremented == true) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: Theme.of(context).primaryColor,
-                content: const Text('Incremented!'),
-                duration: const Duration(
-                  milliseconds: 300,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            BlocConsumer<CounterCubit, CounterState>(
+              listener: (context, state) {
+                if (state.wasIncremented == true) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: Theme.of(context).primaryColor,
+                      content: const Text('Incremented!'),
+                      duration: const Duration(
+                        milliseconds: 300,
+                      ),
+                    ),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: Theme.of(context).primaryColor,
+                      content: const Text('Decremented!'),
+                      duration: const Duration(
+                        milliseconds: 300,
+                      ),
+                    ),
+                  );
+                }
+              },
+              builder: (context, state) => Text(
+                state.counterValue.toString(),
+                style: const TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            );
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: Theme.of(context).primaryColor,
-                content: const Text('Decremented!'),
-                duration: const Duration(
-                  milliseconds: 300,
-                ),
-              ),
-            );
-          }
-        },
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              BlocBuilder<CounterCubit, CounterState>(
-                builder: (context, state) => Text(
-                  state.counterValue.toString(),
-                  style: const TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  buildElevatedButton(bloc.decrement, Icons.remove),
-                  const SizedBox(width: 10),
-                  buildElevatedButton(bloc.increment, Icons.add),
-                ],
-              )
-            ],
-          ),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                buildElevatedButton(bloc.decrement, Icons.remove),
+                const SizedBox(width: 10),
+                buildElevatedButton(bloc.increment, Icons.add),
+              ],
+            )
+          ],
         ),
       ),
     );
