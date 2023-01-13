@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:diving_into_flutter_bloc/cubit/counter_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,30 +21,54 @@ class _CounterScreenState extends State<CounterScreen> {
       appBar: AppBar(
         title: const Text('Counter App'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            BlocBuilder(
-              bloc: bloc,
-              builder: (context, data) => Text(
-                bloc.state.counterValue.toString(),
-                style: const TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
+      body: BlocListener<CounterCubit, CounterState>(
+        listener: (context, state) {
+          if (state.wasIncremented == true) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: Theme.of(context).primaryColor,
+                content: const Text('Incremented!'),
+                duration: const Duration(
+                  milliseconds: 300,
                 ),
               ),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                buildElevatedButton(bloc.decrement, Icons.remove),
-                const SizedBox(width: 10),
-                buildElevatedButton(bloc.increment, Icons.add),
-              ],
-            )
-          ],
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: Theme.of(context).primaryColor,
+                content: const Text('Decremented!'),
+                duration: const Duration(
+                  milliseconds: 300,
+                ),
+              ),
+            );
+          }
+        },
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              BlocBuilder<CounterCubit, CounterState>(
+                builder: (context, state) => Text(
+                  state.counterValue.toString(),
+                  style: const TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  buildElevatedButton(bloc.decrement, Icons.remove),
+                  const SizedBox(width: 10),
+                  buildElevatedButton(bloc.increment, Icons.add),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
