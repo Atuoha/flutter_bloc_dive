@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:diving_into_flutter_bloc/cubit/counter_state.dart';
 
 class CounterCubit extends Cubit<CounterState> {
-  CounterCubit() : super(CounterState(counterValue: 0, wasIncremented: false));
+  CounterCubit() : super( CounterState(counterValue: 0, wasIncremented: false));
 
   void increment() => emit(
         CounterState(

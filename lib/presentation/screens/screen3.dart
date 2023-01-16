@@ -2,8 +2,6 @@ import 'package:diving_into_flutter_bloc/cubit/counter_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'cubit/counter_state.dart';
-
 class CounterScreen extends StatefulWidget {
   const CounterScreen({Key? key}) : super(key: key);
 
@@ -17,45 +15,12 @@ class _CounterScreenState extends State<CounterScreen> {
     final bloc = BlocProvider.of<CounterCubit>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Counter App'),
+        title: const Text('Counter App3'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            BlocConsumer<CounterCubit, CounterState>(
-              listener: (context, state) {
-                if (state.wasIncremented == true) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor: Theme.of(context).primaryColor,
-                      content: const Text('Incremented!'),
-                      duration: const Duration(
-                        milliseconds: 300,
-                      ),
-                    ),
-                  );
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor: Theme.of(context).primaryColor,
-                      content: const Text('Decremented!'),
-                      duration: const Duration(
-                        milliseconds: 300,
-                      ),
-                    ),
-                  );
-                }
-              },
-              builder: (context, state) => Text(
-                state.counterValue.toString(),
-                style: const TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
