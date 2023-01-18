@@ -1,15 +1,16 @@
 import 'package:diving_into_flutter_bloc/cubit/counter_cubit.dart';
+import 'package:diving_into_flutter_bloc/presentation/screens/screen3.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CounterScreen extends StatefulWidget {
-  const CounterScreen({Key? key}) : super(key: key);
+class SecondScreen extends StatefulWidget {
+  const SecondScreen({Key? key}) : super(key: key);
 
   @override
-  State<CounterScreen> createState() => _CounterScreenState();
+  State<SecondScreen> createState() => _SecondScreenState();
 }
 
-class _CounterScreenState extends State<CounterScreen> {
+class _SecondScreenState extends State<SecondScreen> {
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<CounterCubit>(context);
@@ -17,11 +18,18 @@ class _CounterScreenState extends State<CounterScreen> {
       appBar: AppBar(
         title: const Text('Counter App2'),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const ThirdScreen(),
+          ),
+        ),
+        child: const Icon(Icons.chevron_right),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -37,9 +45,9 @@ class _CounterScreenState extends State<CounterScreen> {
   }
 
   ElevatedButton buildElevatedButton(
-      Function action,
-      IconData icon,
-      ) {
+    Function action,
+    IconData icon,
+  ) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(

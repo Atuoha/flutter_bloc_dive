@@ -1,21 +1,32 @@
 import 'package:diving_into_flutter_bloc/cubit/counter_cubit.dart';
+import 'package:diving_into_flutter_bloc/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CounterScreen extends StatefulWidget {
-  const CounterScreen({Key? key}) : super(key: key);
+import '../../cubit_counter.dart';
+
+class ThirdScreen extends StatefulWidget {
+  const ThirdScreen({Key? key}) : super(key: key);
 
   @override
-  State<CounterScreen> createState() => _CounterScreenState();
+  State<ThirdScreen> createState() => _ThirdScreenState();
 }
 
-class _CounterScreenState extends State<CounterScreen> {
+class _ThirdScreenState extends State<ThirdScreen> {
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<CounterCubit>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter App3'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const CounterScreen(),
+          ),
+        ),
+        child: const Icon(Icons.chevron_right),
       ),
       body: Center(
         child: Column(

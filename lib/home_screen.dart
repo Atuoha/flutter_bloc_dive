@@ -1,3 +1,4 @@
+import 'package:diving_into_flutter_bloc/presentation/screens/screen2.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math show Random;
 import 'package:bloc/bloc.dart';
@@ -40,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('BLoC')),
+
       body: StreamBuilder<String?>(
         stream: cubit.stream,
         builder: (context, snapshot) {
