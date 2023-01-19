@@ -28,6 +28,9 @@ class MyApp extends StatelessWidget {
       create: (context) => CounterCubit(),
       child: const MaterialApp(
         home: CounterScreen(),
+        routes: {
+
+        },
       ),
     );
   }

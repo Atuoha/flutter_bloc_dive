@@ -1,12 +1,13 @@
 import 'package:diving_into_flutter_bloc/cubit/counter_cubit.dart';
-import 'package:diving_into_flutter_bloc/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '../../cubit/counter_state.dart';
 import '../../cubit_counter.dart';
+
 
 class ThirdScreen extends StatefulWidget {
   const ThirdScreen({Key? key}) : super(key: key);
+  static const routeName = "/thirdScreen";
 
   @override
   State<ThirdScreen> createState() => _ThirdScreenState();
@@ -18,7 +19,8 @@ class _ThirdScreenState extends State<ThirdScreen> {
     final bloc = BlocProvider.of<CounterCubit>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Counter App3'),
+        title: const Text('Counter App 3'),
+        backgroundColor: Colors.red,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.of(context).push(
@@ -32,6 +34,39 @@ class _ThirdScreenState extends State<ThirdScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            BlocConsumer<CounterCubit, CounterState>(
+              listener: (context, state) {
+                if (state.wasIncremented == true) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: Theme.of(context).primaryColor,
+                      content: const Text('Incremented!'),
+                      duration: const Duration(
+                        milliseconds: 300,
+                      ),
+                    ),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: Theme.of(context).primaryColor,
+                      content: const Text('Decremented!'),
+                      duration: const Duration(
+                        milliseconds: 300,
+                      ),
+                    ),
+                  );
+                }
+              },
+              builder: (context, state) => Text(
+                state.counterValue.toString(),
+                style: const TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -47,9 +82,9 @@ class _ThirdScreenState extends State<ThirdScreen> {
   }
 
   ElevatedButton buildElevatedButton(
-    Function action,
-    IconData icon,
-  ) {
+      Function action,
+      IconData icon,
+      ) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(

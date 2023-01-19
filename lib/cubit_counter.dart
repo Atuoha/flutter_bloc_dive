@@ -2,7 +2,6 @@ import 'package:diving_into_flutter_bloc/cubit/counter_cubit.dart';
 import 'package:diving_into_flutter_bloc/presentation/screens/screen2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'cubit/counter_state.dart';
 
 class CounterScreen extends StatefulWidget {
@@ -23,7 +22,10 @@ class _CounterScreenState extends State<CounterScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const SecondScreen(),
+            builder: (_) => BlocProvider.value(
+              value: BlocProvider.of<CounterCubit>(context),
+              child: const SecondScreen(),
+            ),
           ),
         ),
         child: const Icon(Icons.chevron_right),
