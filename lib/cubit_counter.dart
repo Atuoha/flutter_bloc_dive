@@ -6,6 +6,7 @@ import 'cubit/counter_state.dart';
 
 class CounterScreen extends StatefulWidget {
   const CounterScreen({Key? key}) : super(key: key);
+  static const routeName = "/";
 
   @override
   State<CounterScreen> createState() => _CounterScreenState();
@@ -20,13 +21,8 @@ class _CounterScreenState extends State<CounterScreen> {
         title: const Text('Counter App'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => BlocProvider.value(
-              value: BlocProvider.of<CounterCubit>(context),
-              child: const SecondScreen(),
-            ),
-          ),
+        onPressed: () => Navigator.of(context).pushNamed(
+          SecondScreen.routeName
         ),
         child: const Icon(Icons.chevron_right),
       ),

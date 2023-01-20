@@ -23,10 +23,8 @@ class _ThirdScreenState extends State<ThirdScreen> {
         backgroundColor: Colors.red,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const CounterScreen(),
-          ),
+        onPressed: () => Navigator.of(context).pushNamed(
+            CounterScreen.routeName
         ),
         child: const Icon(Icons.chevron_right),
       ),

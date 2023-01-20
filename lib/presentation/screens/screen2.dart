@@ -23,10 +23,8 @@ class _SecondScreenState extends State<SecondScreen> {
 
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const ThirdScreen(),
-          ),
+        onPressed: () => Navigator.of(context).pushNamed(
+            ThirdScreen.routeName
         ),
         child: const Icon(Icons.chevron_right),
       ),
