@@ -1,8 +1,8 @@
-import 'package:diving_into_flutter_bloc/cubit/counter_cubit.dart';
 import 'package:diving_into_flutter_bloc/presentation/screens/screen3.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../cubit/counter_state.dart';
+import '../../business_logic/cubits/counter_cubit.dart';
+import '../../business_logic/cubits/counter_state.dart';
 
 class SecondScreen extends StatefulWidget {
   const SecondScreen({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class _SecondScreenState extends State<SecondScreen> {
 
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).pushNamed(
+        onPressed: () => Navigator.of(context).pushReplacementNamed(
             ThirdScreen.routeName
         ),
         child: const Icon(Icons.chevron_right),

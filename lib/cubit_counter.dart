@@ -1,8 +1,8 @@
-import 'package:diving_into_flutter_bloc/cubit/counter_cubit.dart';
 import 'package:diving_into_flutter_bloc/presentation/screens/screen2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'cubit/counter_state.dart';
+import '../../business_logic/cubits/counter_cubit.dart';
+import '../../business_logic/cubits/counter_state.dart';
 
 class CounterScreen extends StatefulWidget {
   const CounterScreen({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _CounterScreenState extends State<CounterScreen> {
         title: const Text('Counter App'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).pushNamed(
+        onPressed: () => Navigator.of(context).pushReplacementNamed(
           SecondScreen.routeName
         ),
         child: const Icon(Icons.chevron_right),
@@ -93,3 +93,85 @@ class _CounterScreenState extends State<CounterScreen> {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import 'package:flutter/material.dart';
+// class CounterScreen extends StatefulWidget {
+//   const CounterScreen({Key? key}) : super(key: key);
+//   static const routeName = "/";
+//
+//   @override
+//   State<CounterScreen> createState() => _CounterScreenState();
+// }
+//
+// class _CounterScreenState extends State<CounterScreen> {
+//   int sum = 0;
+//   int num1 = 0;
+//   int num2 = 0;
+//
+//   void calc(){
+//
+//     setState(() {
+//       sum =  num1 + num2;
+//     });
+//   }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: const  Text('Sum')),
+//       body: Column(
+//         children:[
+//           TextField(
+//             keyboardType: TextInputType.number,
+//             onChanged: (value){
+//               setState(() {
+//                 num1 = int.parse(value) ;
+//               });
+//               print(num1);
+//             },
+//           ),
+//           const SizedBox(height: 10),
+//           TextField(
+//             keyboardType: TextInputType.number,
+//             onChanged: (value){
+//               setState(() {
+//                 num2 = int.parse(value) ;
+//               });
+//             },
+//           ),
+//           const SizedBox(height: 10),
+//           Text(sum.toString()),
+//           const SizedBox(height: 10),
+//           ElevatedButton(onPressed: ()=> calc(), child: const Text('Calc'))
+//         ]
+//       ),
+//     );
+//   }
+// }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+

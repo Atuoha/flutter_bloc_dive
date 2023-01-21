@@ -1,6 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:diving_into_flutter_bloc/cubit/counter_cubit.dart';
-import 'package:diving_into_flutter_bloc/cubit/counter_state.dart';
+import 'package:diving_into_flutter_bloc/business_logic/cubits/counter_cubit.dart';
+import 'package:diving_into_flutter_bloc/business_logic/cubits/counter_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
