@@ -8,7 +8,7 @@ import 'constants/enums.dart';
 
 class CounterScreen extends StatefulWidget {
   const CounterScreen({Key? key}) : super(key: key);
-  static const routeName = "/";
+  static const routeName = "/counter";
 
   @override
   State<CounterScreen> createState() => _CounterScreenState();

@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:diving_into_flutter_bloc/business_logic/cubits/internet_cubit.dart';
+import 'package:diving_into_flutter_bloc/business_logic/cubits/settings_cubit.dart';
 import 'package:diving_into_flutter_bloc/presentation/routing/app_routing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
           create: (context) => InternetCubit(
             connectivity: Connectivity(),
           ),
+        ),
+        BlocProvider<SettingsCubit>(
+          create: (context) => SettingsCubit(),
         ),
         BlocProvider<CounterCubit>(
           create: (context) => CounterCubit(
