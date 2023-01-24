@@ -35,12 +35,45 @@ class _CounterScreenState extends State<CounterScreen> {
                 builder: (context, state) {
               if (state is InternetConnected &&
                   state.connectionType == ConnectionType.wifi) {
-                return buildText('Wi-fi is connected');
+                return buildText(
+                  text: 'Wi-fi is connected',
+                  color: Colors.green,
+                );
               } else if (state is InternetConnected &&
                   state.connectionType == ConnectionType.mobile) {
-                return buildText('Mobile Data is connected');
+                return buildText(
+                  text: 'Mobile Data is connected',
+                  color: Colors.blue,
+                );
               } else if (state is InternetDisconnected) {
-                return buildText('Internet is not connected');
+                return buildText(
+                  text: 'Internet is not connected',
+                  color: Colors.red,
+                );
+              }
+              return const CircularProgressIndicator();
+            }),
+            const SizedBox(height: 20),
+            Builder(builder: (context) {
+              final counter = context.watch<CounterCubit>().state;
+              final internetState = context.watch<InternetCubit>().state;
+              if (internetState is InternetConnected &&
+                  internetState.connectionType == ConnectionType.wifi) {
+                return buildText(
+                  text: 'Counter: ${counter.counterValue} and Wi-fi is connected',
+                  color: Colors.green,
+                );
+              } else if (internetState is InternetConnected &&
+                  internetState.connectionType == ConnectionType.mobile) {
+                return buildText(
+                  text: 'Counter: ${counter.counterValue}  and Mobile Data is connected',
+                  color: Colors.blue,
+                );
+              } else if (internetState is InternetDisconnected) {
+                return buildText(
+                  text: 'Counter: ${counter.counterValue}  and Internet is not connected',
+                  color: Colors.red,
+                );
               }
               return const CircularProgressIndicator();
             }),
@@ -91,8 +124,15 @@ class _CounterScreenState extends State<CounterScreen> {
     );
   }
 
-  Text buildText(String text) =>
-      Text(text, style: const TextStyle(fontWeight: FontWeight.bold));
+  // Internet Connection Button
+  Text buildText({required String text, required Color color}) => Text(
+        text,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+          color: color,
+        ),
+      );
 
   ElevatedButton buildElevatedButton(
     Function action,

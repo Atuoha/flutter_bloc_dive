@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:diving_into_flutter_bloc/constants/enums.dart';
 import 'internet_cubit.dart';
