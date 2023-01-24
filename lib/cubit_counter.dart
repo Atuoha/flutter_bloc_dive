@@ -77,6 +77,11 @@ class _CounterScreenState extends State<CounterScreen> {
               }
               return const CircularProgressIndicator();
             }),
+            const SizedBox(height:20),
+            Builder(builder: (context){
+              final counter =  context.select((CounterCubit cubit) => cubit.state.counterValue);
+              return Text('Counter: $counter');
+            },),
             BlocConsumer<CounterCubit, CounterState>(
               listener: (context, state) {
                 if (state.wasIncremented == true) {
