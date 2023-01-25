@@ -2,6 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:diving_into_flutter_bloc/business_logic/cubits/internet_cubit.dart';
 import 'package:diving_into_flutter_bloc/business_logic/cubits/settings_cubit.dart';
 import 'package:diving_into_flutter_bloc/presentation/routing/app_routing.dart';
+import 'package:diving_into_flutter_bloc/utility/app_bloc_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,6 +10,8 @@ import 'business_logic/cubits/counter_cubit.dart';
 import 'business_logic/cubits/counter_state.dart';
 
 void main() {
+  Bloc.observer = AppBlocObserver();
+
   runApp(MyApp(
     appRoute: AppRoute(),
     connectivity: Connectivity(),

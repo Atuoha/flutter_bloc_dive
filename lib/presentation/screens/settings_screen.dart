@@ -5,7 +5,7 @@ import '../../business_logic/cubits/settings_cubit.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
-  static const routeName = "/";
+  static const routeName = "/settings";
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();

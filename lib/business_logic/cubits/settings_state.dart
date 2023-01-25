@@ -1,6 +1,6 @@
 part of 'settings_cubit.dart';
 
-class SettingsState extends Equatable{
+class SettingsState extends Equatable {
   final bool emailNotifications;
   final bool appNotifications;
 
@@ -18,7 +18,11 @@ class SettingsState extends Equatable{
 
   @override
   // TODO: implement props
-  List<Object?> get props => [emailNotifications,appNotifications];
+  List<Object?> get props => [emailNotifications, appNotifications];
+
+  @override
+  String toString() =>
+      'SettingsState(emailNotifications:$emailNotifications,appNotifications: $appNotifications)';
 }
 
 // class SettingsInitial extends SettingsState {}

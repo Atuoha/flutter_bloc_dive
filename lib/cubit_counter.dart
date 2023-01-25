@@ -1,5 +1,6 @@
 import 'package:diving_into_flutter_bloc/business_logic/cubits/internet_cubit.dart';
 import 'package:diving_into_flutter_bloc/presentation/screens/screen2.dart';
+import 'package:diving_into_flutter_bloc/presentation/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../business_logic/cubits/counter_cubit.dart';
@@ -8,7 +9,7 @@ import 'constants/enums.dart';
 
 class CounterScreen extends StatefulWidget {
   const CounterScreen({Key? key}) : super(key: key);
-  static const routeName = "/counter";
+  static const routeName = "/";
 
   @override
   State<CounterScreen> createState() => _CounterScreenState();
@@ -21,6 +22,13 @@ class _CounterScreenState extends State<CounterScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter App'),
+        actions: [
+          IconButton(
+            onPressed: () =>
+                Navigator.of(context).pushNamed(SettingsScreen.routeName),
+            icon: const Icon(Icons.settings),
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () =>
@@ -60,28 +68,34 @@ class _CounterScreenState extends State<CounterScreen> {
               if (internetState is InternetConnected &&
                   internetState.connectionType == ConnectionType.wifi) {
                 return buildText(
-                  text: 'Counter: ${counter.counterValue} and Wi-fi is connected',
+                  text:
+                      'Counter: ${counter.counterValue} and Wi-fi is connected',
                   color: Colors.green,
                 );
               } else if (internetState is InternetConnected &&
                   internetState.connectionType == ConnectionType.mobile) {
                 return buildText(
-                  text: 'Counter: ${counter.counterValue}  and Mobile Data is connected',
+                  text:
+                      'Counter: ${counter.counterValue}  and Mobile Data is connected',
                   color: Colors.blue,
                 );
               } else if (internetState is InternetDisconnected) {
                 return buildText(
-                  text: 'Counter: ${counter.counterValue}  and Internet is not connected',
+                  text:
+                      'Counter: ${counter.counterValue}  and Internet is not connected',
                   color: Colors.red,
                 );
               }
               return const CircularProgressIndicator();
             }),
-            const SizedBox(height:20),
-            Builder(builder: (context){
-              final counter =  context.select((CounterCubit cubit) => cubit.state.counterValue);
-              return Text('Counter: $counter');
-            },),
+            const SizedBox(height: 20),
+            Builder(
+              builder: (context) {
+                final counter = context
+                    .select((CounterCubit cubit) => cubit.state.counterValue);
+                return Text('Counter: $counter');
+              },
+            ),
             BlocConsumer<CounterCubit, CounterState>(
               listener: (context, state) {
                 if (state.wasIncremented == true) {

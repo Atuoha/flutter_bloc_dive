@@ -13,4 +13,8 @@ class CounterState extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [counterValue, wasIncremented];
+
+  @override
+  String toString() =>
+      'CounterState(counterValue: $counterValue, wasIncremented: $wasIncremented)';
 }
